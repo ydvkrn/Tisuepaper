@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Modifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        #outputContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        #outputURL {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Paste your link below:</h2>
+    <input type="text" id="inputURL" placeholder="Enter URL here">
+    <button onclick="modifyURL()">Modify Link</button>
+
+    <div id="outputContainer">
+        <p>Modified Link: <span id="outputURL"></span></p>
+        <button onclick="copyToClipboard()">Copy</button>
+    </div>
+
+    <script>
+        function modifyURL() {
+            let url = document.getElementById("inputURL").value;
+            let modifiedURL = url.replace("dl.springsfern.in", "go.springsfern.in").split(".pdf")[0] + ".pdf";
+            
+            document.getElementById("outputURL").innerText = modifiedURL;
+            document.getElementById("outputContainer").style.display = "block"; // Show the output section
+        }
+
+        function copyToClipboard() {
+            let text = document.getElementById("outputURL").innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+        }
+    </script>
+
+</body>
+</html>
