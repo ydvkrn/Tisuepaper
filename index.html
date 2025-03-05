@@ -40,7 +40,7 @@
 </head>
 <body>
 
-    <h2>Paste your link below:</h2>
+    <h2>Paste your link below: And Enjoy;⁠)</h2>
     <input type="text" id="inputURL" placeholder="Enter URL here">
     <button onclick="modifyURL()">Modify Link</button>
 
@@ -52,10 +52,16 @@
     <script>
         function modifyURL() {
             let url = document.getElementById("inputURL").value;
-            let modifiedURL = url.replace("dl.springsfern.in", "go.springsfern.in").split(".pdf")[0] + ".pdf";
-            
-            document.getElementById("outputURL").innerText = modifiedURL;
-            document.getElementById("outputContainer").style.display = "block"; // Show the output section
+
+            // डोमेन को बदलें
+            let modifiedURL = url.replace("dl.springsfern.in", "go.springsfern.in");
+
+            // URL में से '?' के बाद की क्वेरी स्ट्रिंग को हटाएँ
+            let cleanURL = modifiedURL.split('?')[0];
+
+            // अपडेटेड URL को दिखाएँ
+            document.getElementById("outputURL").innerText = cleanURL;
+            document.getElementById("outputContainer").style.display = "block";
         }
 
         function copyToClipboard() {
